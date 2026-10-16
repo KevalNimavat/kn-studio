@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact | KN Studio</title>
+  <meta
+    name="description"
+    content="Have a project in mind? Contact KN Studio to discuss your website, design, and digital presence requirements."
+  >
+
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/css/intlTelInput.css"
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/contact.css">
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/intlTelInput.min.js"
+    defer
+  ></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/utils.js"
+    defer
+  ></script>
+
+  <script src="../js/main.js" defer></script>
+  <script src="../js/contact.js" defer></script>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a class="logo" href="../index.html" aria-label="KN Studio home">
+        KN<span>.</span>STUDIO
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html" class="nav-cta active">Let's Talk <span>↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="contact-hero">
+      <div class="container">
+        <p class="section-eyebrow">
+          <span class="eyebrow-line"></span>
+          LET'S WORK TOGETHER
+        </p>
+
+        <h1>
+          Have a project<br>
+          in <span>mind?</span>
+        </h1>
+
+        <p class="contact-hero-description">
+          Tell me about your idea. Let's turn it into something
+          thoughtful, useful, and built to make an impact.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT CONTENT -->
+    <section class="contact-section">
+      <div class="container contact-layout">
+
+        <!-- CONTACT INFORMATION -->
+        <aside class="contact-info">
+          <p class="section-eyebrow">GET IN TOUCH</p>
+
+          <h2>
+            Let's make<br>
+            something <span>great.</span>
+          </h2>
+
+          <p class="contact-info-description">
+            Share your goals, your challenges, and what you want to
+            build. I'll review your requirements and get back to you.
+          </p>
+
+          <div class="contact-info-list">
+
+            <a href="mailto:kpworksss007@gmail.com" class="contact-info-item">
+              <span class="contact-info-label">EMAIL</span>
+              <span class="contact-info-value">kpworksss007@gmail.com</span>
+              <span class="contact-info-arrow">↗</span>
+            </a>
+
+            <a
+              href="https://wa.me/919081815781"
+              class="contact-info-item"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="contact-info-label">WHATSAPP</span>
+              <span class="contact-info-value">Let's chat directly</span>
+              <span class="contact-info-arrow">↗</span>
+            </a>
+
+          </div>
+
+          <div class="contact-availability">
+            <span class="availability-dot"></span>
+            <span>Available for selected projects</span>
+          </div>
+        </aside>
+
+        <!-- ENQUIRY FORM -->
+        <div class="contact-form-wrapper">
+          <div class="contact-form-heading">
+            <p class="section-eyebrow">PROJECT ENQUIRY</p>
+            <h2>Tell me about your project.</h2>
+            <p>Fill in the details below to get started.</p>
+          </div>
+
+          <form id="contact-form">
+
+            <div class="form-grid">
+
+              <div class="form-field">
+                <label for="name">Your name <span>*</span></label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Full name"
+                  autocomplete="name"
+                  required
+                  maxlength="100"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email address <span>*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  autocomplete="email"
+                  required
+                  maxlength="150"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="phone">Phone number <span>*</span></label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter 10-digit number"
+                  autocomplete="tel-national"
+                  inputmode="numeric"
+                  required
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="business">Business / brand</label>
+                <input
+                  type="text"
+                  id="business"
+                  name="business"
+                  placeholder="Your business name"
+                  maxlength="150"
+                >
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="service">What service do you need? <span>*</span></label>
+
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select a service</option>
+                  <option value="Website Design & Development">Website Design & Development</option>
+                  <option value="Landing Page">Landing Page</option>
+                  <option value="Portfolio Website">Portfolio Website</option>
+                  <option value="Google Business Profile">Google Business Profile</option>
+                  <option value="Social Media Management">Social Media Management</option>
+                  <option value="SEO & Digital Presence">SEO & Digital Presence</option>
+                  <option value="Content Creation">Content Creation</option>
+                  <option value="Multiple Services">Multiple Services</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="budget">Estimated budget</label>
+
+                <select id="budget" name="budget">
+                  <option value="" selected>Select your budget</option>
+                  <option value="Under ₹1,500">Under ₹1,500</option>
+                  <option value="₹1,500 – ₹5,000">₹1,500 – ₹5,000</option>
+                  <option value="₹5,000 – ₹10,000">₹5,000 – ₹10,000</option>
+                  <option value="₹10,000 – ₹25,000">₹10,000 – ₹25,000</option>
+                  <option value="₹25,000+">₹25,000+</option>
+                  <option value="Open to discussion">Open to discussion</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="deadline">Expected timeline</label>
+
+                <select id="deadline" name="deadline">
+                  <option value="" selected>Select timeline</option>
+                  <option value="Within 3 days">Within 3 days</option>
+                  <option value="Within 1 week">Within 1 week</option>
+                  <option value="Within 2 weeks">Within 2 weeks</option>
+                  <option value="Within 1 month">Within 1 month</option>
+                  <option value="Flexible">Flexible</option>
+                </select>
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="message">Project requirements <span>*</span></label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  placeholder="Tell me what you want to build, your goals, and any important requirements..."
+                  required
+                  maxlength="5000"
+                ></textarea>
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="reference">Reference website or inspiration</label>
+
+                <input
+                  type="url"
+                  id="reference"
+                  name="reference"
+                  placeholder="https://example.com"
+                  maxlength="500"
+                >
+              </div>
+
+              <div class="form-field form-field-full">
+                <label for="notes">Additional notes</label>
+
+                <textarea
+                  id="notes"
+                  name="notes"
+                  rows="3"
+                  placeholder="Anything else I should know?"
+                  maxlength="3000"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <p class="form-privacy">
+              Your details will only be used to respond to your enquiry.
+            </p>
+
+            <button type="submit" class="contact-submit">
+              <span>SUBMIT ENQUIRY</span>
+              <span class="submit-arrow">↗</span>
+            </button>
+
+            <p
+              id="form-status"
+              class="form-status"
+              role="status"
+              aria-live="polite"
+            ></p>
+
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="logo footer-logo" href="../index.html">
+        KN<span>.</span>STUDIO
+      </a>
+
+      <p>Thoughtful digital experiences. Built with purpose.</p>
+
+      <p>© <span id="current-year"></span> KN Studio</p>
+    </div>
+  </footer>
+
+  <!-- SUCCESS POPUP -->
+  <div class="success-modal" id="success-modal" aria-hidden="true">
+
+    <div class="success-overlay" data-close-modal></div>
+
+    <div
+      class="success-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="success-title"
+      aria-describedby="success-description"
+      tabindex="-1"
+    >
+      <button
+        type="button"
+        class="success-close"
+        aria-label="Close popup"
+        data-close-modal
+      >&times;</button>
+
+      <div class="success-icon">
+        <svg viewBox="0 0 52 52" aria-hidden="true">
+          <circle cx="26" cy="26" r="24"></circle>
+          <path d="M15 26.5 L22.5 34 L37.5 18"></path>
+        </svg>
+      </div>
+
+      <p class="success-eyebrow">ENQUIRY RECEIVED</p>
+
+      <h2 id="success-title">
+        Thank you for<br>
+        reaching <span>out.</span>
+      </h2>
+
+      <p id="success-description" class="success-message">
+        Your project enquiry has been submitted successfully.
+        I'm looking forward to learning more about your idea.
+      </p>
+
+      <div class="success-divider"></div>
+
+      <div class="success-next">
+        <span class="success-next-number">01</span>
+
+        <p>
+          <strong>What's next?</strong>
+          <span>I'll review your requirements and get back to you.</span>
+        </p>
+      </div>
+
+      <button type="button" class="success-done" data-close-modal>
+        BACK TO WEBSITE <span>↗</span>
+      </button>
+
+      <p class="success-brand">KN<span>.</span>STUDIO</p>
+    </div>
+  </div>
+
+</body>
+</html>
+hyug7tfvgybh

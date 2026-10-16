@@ -1,0 +1,261 @@
+
+/* About hero */
+
+.about-hero {
+  padding-block: 62px 54px;
+  border-bottom: 1px solid var(--sand);
+}
+
+.about-hero h1 {
+  margin-top: 18px;
+  font-family: var(--heading);
+  font-size: clamp(45px, 6.2vw, 76px);
+  font-weight: 600;
+  letter-spacing: -3.5px;
+  line-height: 1.06;
+  animation: hero-enter 0.7s 0.12s both cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.about-hero h1 span,
+.about-copy h2 span,
+.background-grid h2 span,
+.process-section > h2 span {
+  color: var(--orange);
+}
+
+.about-lead {
+  max-width: 590px;
+  margin-top: 17px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Approach introduction */
+
+.about-intro {
+  padding-block: 58px;
+  display: grid;
+  grid-template-columns: 0.65fr 1.35fr;
+  gap: 45px;
+  border-bottom: 1px solid var(--sand);
+}
+
+.about-symbol {
+  display: inline-block;
+  margin-top: 30px;
+  font-family: var(--heading);
+  font-size: clamp(75px, 9vw, 108px);
+  font-weight: 700;
+  letter-spacing: -0.1em;
+  line-height: 1;
+}
+
+.about-symbol span {
+  color: var(--orange);
+}
+
+.about-copy h2,
+.background-grid h2,
+.process-section > h2 {
+  font-family: var(--heading);
+  font-size: clamp(34px, 3.8vw, 46px);
+  font-weight: 600;
+  letter-spacing: -2px;
+  line-height: 1.12;
+}
+
+.about-copy p,
+.background-grid p {
+  margin-top: 15px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* Background */
+
+.about-background {
+  padding-block: 58px;
+  border-bottom: 1px solid var(--sand);
+}
+
+.background-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.background-grid p:first-child {
+  margin-top: 0;
+}
+
+/* Skills */
+
+.skills-section {
+  padding-block: 58px;
+  border-bottom: 1px solid var(--sand);
+}
+
+.skills-section .section-heading {
+  margin-bottom: 22px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.skill-card {
+  min-height: 150px;
+  padding: 21px;
+  border: 1px solid var(--sand);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--orange);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.skill-card > span,
+.process-list article > span {
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.skill-card h3,
+.process-list h3 {
+  margin-top: 12px;
+  font-family: var(--heading);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  line-height: 1.3;
+}
+
+.skill-card p,
+.process-list p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* Process */
+
+.process-section {
+  padding-block: 58px;
+}
+
+.process-section > h2 {
+  margin-top: 12px;
+}
+
+.process-list {
+  margin-top: 26px;
+  border-top: 1px solid var(--sand);
+}
+
+.process-list article {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 16px;
+  padding-block: 17px;
+  border-bottom: 1px solid var(--sand);
+  transition: padding-left 0.25s ease;
+}
+
+.process-list article:hover {
+  padding-left: 5px;
+}
+
+.process-list h3 {
+  margin-top: 0;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 950px) {
+  .about-intro {
+    gap: 30px;
+  }
+
+  .background-grid {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-hero {
+    padding-block: 42px 38px;
+  }
+
+  .about-hero h1 {
+    font-size: clamp(42px, 10vw, 60px);
+    letter-spacing: -2.5px;
+  }
+
+  .about-intro,
+  .background-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .about-intro,
+  .about-background,
+  .skills-section,
+  .process-section {
+    padding-block: 43px;
+  }
+
+  .about-symbol {
+    margin-top: 12px;
+    font-size: 72px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .skill-card {
+    min-height: auto;
+    padding: 19px;
+  }
+
+  .background-grid h2,
+  .about-copy h2,
+  .process-section > h2 {
+    font-size: 34px;
+    letter-spacing: -1.7px;
+  }
+
+  .about-copy p,
+  .background-grid p {
+    margin-top: 12px;
+  }
+
+  .process-list {
+    margin-top: 21px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero h1 {
+    animation: none;
+  }
+
+  .skill-card,
+  .process-list article {
+    transition: none;
+  }
+}

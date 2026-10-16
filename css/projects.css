@@ -1,0 +1,732 @@
+
+/* =========================================
+   KN STUDIO — PROJECTS PAGE
+   Three-column project cards
+   ========================================= */
+
+/* PROJECTS HERO */
+
+.projects-hero {
+  padding-block: 52px 38px;
+  border-bottom: 1px solid var(--sand);
+}
+
+.projects-hero h1 {
+  margin-top: 17px;
+  font-family: var(--heading);
+  font-size: clamp(40px, 5.8vw, 70px);
+  font-weight: 600;
+  letter-spacing: -3px;
+  line-height: 1.08;
+  animation: hero-enter 0.7s 0.1s both cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.projects-hero h1 span {
+  color: var(--orange);
+}
+
+.projects-hero-bottom {
+  margin-top: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+}
+
+.projects-hero-bottom > p {
+  max-width: 510px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.project-count {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* PROJECT GRID */
+
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 28px 22px;
+  padding-block: 28px 40px;
+}
+
+/* EACH PROJECT IS ONE COMPLETE CARD */
+
+.portfolio-project {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 0;
+  overflow: hidden;
+  align-self: stretch;
+  padding: 0;
+  border: 1px solid var(--sand);
+  border-radius: 7px;
+  background: var(--ivory);
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.portfolio-project:hover {
+  border-color: var(--orange);
+  transform: translateY(-3px);
+}
+
+/* Remove the old alternating layout */
+
+.portfolio-project-reverse .portfolio-art,
+.portfolio-project-reverse .portfolio-project-info {
+  order: initial;
+}
+
+/* PROJECT ART PANELS */
+
+.portfolio-art {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 290px;
+  margin: 0;
+  padding: 17px;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.portfolio-art-top,
+.portfolio-art-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* SPORTS ART */
+
+.sports-art {
+  background: var(--orange);
+  color: var(--black);
+}
+
+.sports-art-center {
+  position: relative;
+  padding: 20px 6px;
+}
+
+.sports-kicker {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.sports-art-center h2 {
+  margin-top: 12px;
+  font-family: var(--heading);
+  font-size: clamp(58px, 5.5vw, 90px);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.09em;
+  transition: transform 0.35s ease;
+}
+
+.sports-art:hover .sports-art-center h2 {
+  transform: translateX(5px);
+}
+
+.sports-art-center h2 span {
+  color: var(--ivory);
+}
+
+.sports-lines {
+  width: 100%;
+  height: 1px;
+  margin-top: 22px;
+  background: rgba(23, 23, 23, 0.4);
+}
+
+.sports-subtitle {
+  margin-top: 9px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+/* CLOTHING CONCEPT */
+
+.clothing-art {
+  background: #E5D9C8;
+  color: #28251F;
+}
+
+.clothing-art .portfolio-art-top,
+.clothing-art .portfolio-art-bottom {
+  color: #62584D;
+}
+
+.clothing-brand {
+  position: relative;
+  z-index: 1;
+  padding: 16px 5px 0;
+}
+
+.clothing-overline {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+}
+
+.clothing-brand h2 {
+  margin-top: 11px;
+  font-family: var(--heading);
+  font-size: clamp(38px, 4vw, 60px);
+  font-weight: 600;
+  line-height: 0.88;
+  letter-spacing: -0.075em;
+}
+
+.clothing-brand h2 span {
+  color: #A34D35;
+}
+
+.clothing-divider {
+  width: 75%;
+  height: 1px;
+  margin-top: 14px;
+  background: #B9A894;
+}
+
+.clothing-brand > p {
+  margin-top: 9px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.clothing-products {
+  position: absolute;
+  right: 14px;
+  bottom: 48px;
+  display: flex;
+  align-items: end;
+  gap: 6px;
+  opacity: 0.95;
+}
+
+.clothing-product {
+  width: 30px;
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 5px;
+  background: #B8A28A;
+}
+
+.clothing-product span {
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.product-two {
+  height: 67px;
+  background: #A34D35;
+  color: var(--ivory);
+}
+
+.product-three {
+  height: 42px;
+  background: #3C4035;
+  color: var(--ivory);
+}
+
+/* RESTAURANT CONCEPT */
+
+.restaurant-art {
+  background: #30382E;
+  color: #F2E6D3;
+}
+
+.restaurant-art .portfolio-art-top,
+.restaurant-art .portfolio-art-bottom {
+  color: #D0C4B0;
+}
+
+.restaurant-brand {
+  padding: 20px 5px;
+}
+
+.restaurant-brand > p {
+  font-size: 8px;
+  letter-spacing: 1.5px;
+}
+
+.restaurant-brand h2 {
+  margin-top: 15px;
+  font-family: var(--heading);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+  overflow-wrap: anywhere;
+}
+
+.restaurant-brand h2 span {
+  color: #DDA078;
+}
+
+.restaurant-rule {
+  width: 80px;
+  height: 2px;
+  margin-top: 17px;
+  background: #DDA078;
+}
+
+.restaurant-label {
+  display: inline-block;
+  margin-top: 11px;
+  color: #D0C4B0;
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.restaurant-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 11px 0;
+  border-top: 1px solid rgba(242, 230, 211, 0.25);
+  border-bottom: 1px solid rgba(242, 230, 211, 0.25);
+  font-size: 7px;
+  letter-spacing: 0.7px;
+}
+
+/* PROJECT INFORMATION */
+
+.portfolio-project-info {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 21px;
+}
+
+.project-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-type {
+  color: var(--orange);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.concept-type {
+  color: var(--muted);
+}
+
+.project-index {
+  color: var(--muted);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.portfolio-project-info > h2 {
+  margin-top: 12px;
+  font-family: var(--heading);
+  font-size: clamp(23px, 2.2vw, 32px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -1.2px;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-project-info > p:not(.project-status-note) {
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.85;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.project-tags span {
+  padding: 5px 8px;
+  border: 1px solid var(--sand);
+  font-size: 9px;
+}
+
+.project-status-note {
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.project-action {
+  margin-top: auto;
+  padding-top: 20px;
+  padding-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border-bottom: 1px solid var(--sand);
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-action span {
+  color: var(--orange);
+}
+
+.project-action:hover {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+
+/* PORTFOLIO NOTE */
+
+.projects-note {
+  padding-block: 18px 36px;
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: 25px;
+  align-items: start;
+}
+
+.projects-note > p:last-child {
+  max-width: 670px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE: TABLET */
+
+@media (max-width: 900px) {
+  .projects-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 18px;
+  }
+
+  .portfolio-art {
+    min-height: 270px;
+  }
+
+  .sports-art-center h2 {
+    font-size: clamp(58px, 9vw, 84px);
+  }
+
+  .portfolio-project-info {
+    padding: 18px;
+  }
+
+  .portfolio-project-info > h2 {
+    font-size: clamp(23px, 3.2vw, 30px);
+  }
+}
+
+/* RESPONSIVE: MOBILE */
+
+@media (max-width: 600px) {
+  .projects-hero {
+    padding-block: 40px 30px;
+  }
+
+  .projects-hero h1 {
+    font-size: clamp(38px, 9.5vw, 55px);
+    letter-spacing: -2px;
+  }
+
+  .projects-hero-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .project-count {
+    white-space: normal;
+  }
+
+  .projects-list {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-block: 22px 28px;
+  }
+
+  .portfolio-project {
+    width: 100%;
+  }
+
+  .portfolio-art {
+    min-height: 300px;
+    padding: 15px;
+  }
+
+  .sports-art-center h2 {
+    font-size: clamp(80px, 22vw, 115px);
+  }
+
+  .clothing-brand h2 {
+    font-size: clamp(55px, 15vw, 75px);
+  }
+
+  .restaurant-brand h2 {
+    font-size: clamp(44px, 12vw, 65px);
+  }
+
+  .portfolio-project-info {
+    padding: 20px;
+  }
+
+  .portfolio-project-info > h2 {
+    font-size: 30px;
+  }
+
+  .projects-note {
+    padding-block: 8px 30px;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+}
+
+/* ACCESSIBILITY: REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-project,
+  .sports-art-center h2 {
+    transition: none;
+  }
+
+  .portfolio-project:hover {
+    transform: none;
+  }
+}
+
+/* =========================================
+   FINAL POLISH — PROJECT BORDERS & COLORS
+   ========================================= */
+
+/* Clear, consistent borders on all three cards */
+.projects-list .portfolio-project {
+  border: 1px solid var(--sand);
+  border-radius: 8px;
+  background: var(--ivory);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(23, 23, 23, 0.025);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.projects-list .portfolio-project:hover {
+  border-color: var(--orange);
+  box-shadow: 0 8px 24px rgba(23, 23, 23, 0.07);
+  transform: translateY(-3px);
+}
+
+/* Give project titles a strong, readable color */
+.projects-list .portfolio-project-info > h2 {
+  color: var(--black);
+  transition: color 0.2s ease;
+}
+
+.projects-list .portfolio-project:first-child .portfolio-project-info > h2 {
+  color: var(--black);
+}
+
+/* Project category labels */
+.projects-list .project-type {
+  color: var(--orange);
+}
+
+.projects-list .concept-type {
+  color: #81776D;
+}
+
+/* Description text: muted but readable */
+.projects-list .portfolio-project-info > p:not(.project-status-note) {
+  color: #70685F;
+}
+
+/* Status notes */
+.projects-list .project-status-note {
+  color: #81776D;
+}
+
+/* Technology tags */
+.projects-list .project-tags span {
+  color: #514A42;
+  background: #F0E8DC;
+  border: 1px solid #DED5C8;
+  border-radius: 3px;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.projects-list .project-tags span:hover {
+  color: #A8432B;
+  background: #F8E4D9;
+  border-color: var(--orange);
+}
+
+/* Project action links */
+.projects-list .project-action {
+  color: var(--black);
+  border-bottom: 1px solid #CFC3B4;
+  text-decoration: none;
+}
+
+.projects-list .project-action span {
+  color: var(--orange);
+}
+
+.projects-list .project-action:hover {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+
+/* Consistent inner spacing */
+.projects-list .portfolio-project-info {
+  padding: 22px;
+}
+
+@media (max-width: 600px) {
+  .projects-list .portfolio-project-info {
+    padding: 18px;
+  }
+}
+
+/* SPORTS PROJECT — IMPROVED INFORMATION PANEL */
+
+.projects-list .portfolio-project:first-child .portfolio-project-info {
+  background: linear-gradient(
+    180deg,
+    #FBF5EC 0%,
+    #F3E7D8 100%
+  );
+  padding: 24px;
+}
+
+.projects-list .portfolio-project:first-child .portfolio-project-info > h2 {
+  color: #171717;
+  font-size: clamp(25px, 2.3vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.projects-list .portfolio-project:first-child .portfolio-project-info > p:not(.project-status-note) {
+  color: #514940;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.projects-list .portfolio-project:first-child .project-status-note {
+  padding: 10px 12px;
+  border-left: 3px solid var(--orange);
+  background: #EDE0D1;
+  color: #514940;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.projects-list .portfolio-project:first-child .project-tags {
+  gap: 8px;
+}
+
+.projects-list .portfolio-project:first-child .project-tags span {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  background: #E7D6C3;
+  border: 1px solid #D5BEA7;
+  border-radius: 4px;
+  color: #45372D;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.projects-list .portfolio-project:first-child .project-action {
+  color: #171717;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.projects-list .portfolio-project:first-child .project-action span {
+  color: var(--orange);
+}
+
+/* Keep the text readable on smaller screens */
+@media (max-width: 600px) {
+  .projects-list .portfolio-project:first-child .portfolio-project-info {
+    padding: 19px;
+  }
+
+  .projects-list .portfolio-project:first-child .portfolio-project-info > h2 {
+    font-size: 28px;
+  }
+}
+
+/* Clickable technology tags */
+
+.projects-list .project-tech-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 10px;
+  border: 1px solid #D5BEA7;
+  border-radius: 4px;
+  background: #E7D6C3;
+  color: #45372D;
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.projects-list .project-tech-links a:hover {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: #171717;
+  transform: translateY(-2px);
+}
+
+.projects-list .project-tech-links a:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
