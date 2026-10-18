@@ -1,310 +1,158 @@
-
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("#contact-form");
-  const status = document.querySelector("#form-status");
-  const year = document.querySelector("#current-year");
-  const phoneInput = document.querySelector("#phone");
-  const successPanel = document.querySelector("#success-panel");
-  const WHATSAPP_NUMBER = "919081815781";
-
-  if (year) year.textContent = new Date().getFullYear();
-
-  let phoneIti = null;
-
-  if (phoneInput && typeof window.intlTelInput === "function") {
-    phoneIti = window.intlTelInput(phoneInput, {
-      initialCountry: "in",
-      separateDialCode: true,
-      nationalMode: true,
-      formatOnDisplay: false,
-      autoPlaceholder: "off",
-      countryOrder: ["in", "us", "gb"]
-    });
-
-    phoneInput.addEventListener("countrychange", () => {
-      phoneInput.value = "";
-      const country = phoneIti.getSelectedCountryData();
-      phoneInput.placeholder =
-        country.iso2 === "in" ? "Enter 10-digit number" : "Enter phone number";
-    });
-
-    phoneInput.addEventListener("input", () => {
-      const country = phoneIti.getSelectedCountryData();
-      const maxDigits = country.iso2 === "in" ? 10 : 15;
-      phoneInput.value = phoneInput.value.replace(/\D/g, "").slice(0, maxDigits);
-    });
-  }
-
-  const otherPairs = [
-    ["service", "service-other"],
-    ["budget", "budget-other"],
-    ["deadline", "deadline-other"],
-    ["project-type", "project-type-other"],
-    ["preferred-contact", "preferred-contact-other"]
-  ];
-
-  otherPairs.forEach(([selectId, inputId]) => {
-    const select = document.getElementById(selectId);
-    const input = document.getElementById(inputId);
-    if (!select || !input) return;
-
-    const updateOther = () => {
-      const visible = select.value === "Other";
-      input.hidden = !visible;
-      input.required = visible;
-      if (!visible) input.value = "";
-    };
-
-    select.addEventListener("change", updateOther);
-    updateOther();
-  });
-
-  function setStatus(message, type = "") {
-    if (!status) return;
-    status.textContent = message;
-    status.classList.toggle("is-error", type === "error");
-    status.classList.toggle("is-success", type === "success");
-  }
-
-  function effectiveValue(data, selectName, otherName) {
-    const selected = String(data.get(selectName) || "").trim();
-
-    if (selected !== "Other") {
-      return selected || "Not specified";
-    }
-
-    return String(data.get(otherName) || "").trim() || "Other (not specified)";
-  }
-
-  function encodeFormData(data) {
-    return data.toString().replace(/%20/g, "+");
-  }
-
+/* KN STUDIO — CONTACT FORM
+   Validates the enquiry and opens WhatsApp with a pre-filled message.
+   Nothing is sent automatically; the visitor reviews and sends it.
+*/
+(function initContactForm() {
+  const form = document.getElementById("contact-form");
   if (!form) return;
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    setStatus("");
+  const status = document.getElementById("form-status");
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
+  // Replace with the studio's WhatsApp number in international format.
+  const WHATSAPP_NUMBER = "919081815781";
+
+  const fields = {
+    name: document.getElementById("name"),
+    email: document.getElementById("email"),
+    phone: document.getElementById("phone"),
+    business: document.getElementById("business"),
+    service: document.getElementById("service"),
+    budget: document.getElementById("budget"),
+    deadline: document.getElementById("deadline"),
+    message: document.getElementById("message"),
+    reference: document.getElementById("reference"),
+    notes: document.getElementById("notes")
+  };
+
+  function value(field) {
+    return field ? field.value.trim() : "";
+  }
+
+  function showStatus(message, type) {
+    if (!status) return;
+    status.replaceChildren();
+    status.textContent = message;
+    status.className = `form-status visible ${type}`;
+  }
+
+  function clearStatus() {
+    if (!status) return;
+    status.replaceChildren();
+    status.className = "form-status";
+  }
+
+  function markInvalid(field, message) {
+    if (field) {
+      field.setAttribute("aria-invalid", "true");
+      field.focus();
     }
+    showStatus(message, "error");
+  }
 
-    if (!phoneInput || !phoneIti) {
-      setStatus(
-        "Phone selector did not load. Refresh the page and try again.",
-        "error"
-      );
-      return;
-    }
+  function validEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
 
-    const country = phoneIti.getSelectedCountryData();
-    const digits = phoneInput.value.replace(/\D/g, "");
+  function validPhone(phone) {
+    const digits = phone.replace(/\D/g, "");
+    return /^[+0-9().\s-]+$/.test(phone) && digits.length >= 7 && digits.length <= 15;
+  }
 
-    if (
-      (country.iso2 === "in" && digits.length !== 10) ||
-      digits.length < 4
-    ) {
-      setStatus(
-        country.iso2 === "in"
-          ? "Please enter exactly 10 digits for an Indian mobile number."
-          : "Please enter a valid phone number.",
-        "error"
-      );
-      phoneInput.focus();
-      return;
-    }
-
-    const sendMethod =
-      form.querySelector('input[name="send_method"]:checked')?.value;
-
-    if (!["whatsapp", "email", "both"].includes(sendMethod)) {
-      setStatus("Please choose WhatsApp, Email, or Both.", "error");
-      return;
-    }
-
-    if (form.dataset.submitting === "true") return;
-    form.dataset.submitting = "true";
-
-    const submitButton = form.querySelector('button[type="submit"]');
-
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.querySelector("span:first-child").textContent =
-        "SUBMITTING ENQUIRY...";
-    }
-
-    // Open a tab immediately in response to the user's submit action.
-    let whatsappTab = null;
-
-    if (sendMethod === "whatsapp" || sendMethod === "both") {
-      try {
-        whatsappTab = window.open("about:blank", "_blank");
-      } catch (_) {
-        whatsappTab = null;
-      }
-    }
-
+  function validUrl(url) {
+    if (!url) return true;
     try {
-      const raw = new FormData(form);
-      const fullPhone = `+${country.dialCode}${digits}`;
+      const parsed = new URL(url);
+      return parsed.protocol === "http:" || parsed.protocol === "https:";
+    } catch {
+      return false;
+    }
+  }
 
-      const service = effectiveValue(raw, "service", "service_other");
-      const budget = effectiveValue(raw, "budget", "budget_other");
-      const deadline = effectiveValue(raw, "deadline", "deadline_other");
-      const projectType = effectiveValue(
-        raw, "project_type", "project_type_other"
-      );
-      const preferredContact = effectiveValue(
-        raw, "preferred_contact", "preferred_contact_other"
-      );
+  function selectedPreferences() {
+    return Array.from(form.querySelectorAll('input[name="preferred_contact"]:checked'))
+      .map((checkbox) => checkbox.value);
+  }
 
-      const submission = new URLSearchParams();
+  function validate() {
+    form.querySelectorAll('[aria-invalid="true"]').forEach((field) => field.removeAttribute("aria-invalid"));
+    clearStatus();
 
-      submission.set("form-name", "contact-enquiry");
-      submission.set("name", String(raw.get("name") || "").trim());
-      submission.set("email", String(raw.get("email") || "").trim());
-      submission.set("phone", fullPhone);
-      submission.set("business", String(raw.get("business") || "").trim());
+    if (!value(fields.name)) return markInvalid(fields.name, "Please enter your name."), false;
+    if (!value(fields.email)) return markInvalid(fields.email, "Please enter your email address."), false;
+    if (!validEmail(value(fields.email))) return markInvalid(fields.email, "Please enter a valid email address."), false;
+    if (!value(fields.phone)) return markInvalid(fields.phone, "Please enter your WhatsApp or phone number."), false;
+    if (!validPhone(value(fields.phone))) return markInvalid(fields.phone, "Please enter a valid phone number, including the country code if needed."), false;
+    if (!value(fields.service)) return markInvalid(fields.service, "Please select the service you need."), false;
+    if (!value(fields.message)) return markInvalid(fields.message, "Please describe your project."), false;
+    if (!validUrl(value(fields.reference))) return markInvalid(fields.reference, "Please enter a valid reference URL beginning with https:// or http://."), false;
 
-      submission.set("service", service);
-      submission.set("service_other", String(raw.get("service_other") || "").trim());
-      submission.set("budget", budget);
-      submission.set("budget_other", String(raw.get("budget_other") || "").trim());
-      submission.set("deadline", deadline);
-      submission.set("deadline_other", String(raw.get("deadline_other") || "").trim());
+    if (selectedPreferences().length === 0) {
+      showStatus("Please select at least one contact preference: WhatsApp, Email, or both.", "error");
+      const first = form.querySelector('input[name="preferred_contact"]');
+      if (first) first.focus();
+      return false;
+    }
+    return true;
+  }
 
-      submission.set("project_type", projectType);
-      submission.set(
-        "project_type_other",
-        String(raw.get("project_type_other") || "").trim()
-      );
+  function buildMessage() {
+    const preferences = selectedPreferences();
+    return [
+      "Hello KN Studio!",
+      "",
+      "I'd like to discuss a project. Here are my details:",
+      "",
+      `Name: ${value(fields.name)}`,
+      `Email: ${value(fields.email)}`,
+      `WhatsApp / Phone: ${value(fields.phone)}`,
+      `Business / Brand: ${value(fields.business) || "Not provided"}`,
+      `Service: ${value(fields.service)}`,
+      `Estimated Budget: ${value(fields.budget) || "Not specified"}`,
+      `Expected Timeline: ${value(fields.deadline) || "Not specified"}`,
+      "",
+      "Project Details:",
+      value(fields.message),
+      "",
+      `Reference Website: ${value(fields.reference) || "Not provided"}`,
+      `Preferred Contact: ${preferences.join(" and ")}`,
+      `Additional Notes: ${value(fields.notes) || "None"}`,
+      "",
+      "Thank you!"
+    ].join("\n");
+  }
 
-      submission.set("preferred_contact", preferredContact);
-      submission.set(
-        "preferred_contact_other",
-        String(raw.get("preferred_contact_other") || "").trim()
-      );
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!validate()) return;
 
-      submission.set("message", String(raw.get("message") || "").trim());
-      submission.set("reference", String(raw.get("reference") || "").trim());
-      submission.set("notes", String(raw.get("notes") || "").trim());
-      submission.set("send_method", sendMethod);
-      submission.set("bot-field", String(raw.get("bot-field") || ""));
-      submission.set("subject", `New KN Studio enquiry — ${service}`);
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildMessage())}`;
+    const opened = window.open(url, "_blank", "noopener,noreferrer");
 
-      // Netlify Forms submission: no Outlook/Gmail app is opened.
-      const response = await fetch("/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: encodeFormData(submission)
-      });
-
-      if (!response.ok) {
-        throw new Error(
-          `Netlify returned HTTP ${response.status}. Check form detection and redeploy.`
-        );
-      }
-
-      const whatsappMessage = [
-        "NEW PROJECT ENQUIRY — KN STUDIO",
-        "",
-        `Name: ${String(raw.get("name") || "").trim()}`,
-        `Email: ${String(raw.get("email") || "").trim()}`,
-        `WhatsApp / Phone: ${fullPhone}`,
-        `Business / Brand: ${String(raw.get("business") || "").trim() || "Not provided"}`,
-        "",
-        `Service: ${service}`,
-        `Budget: ${budget}`,
-        `Deadline: ${deadline}`,
-        `Project type: ${projectType}`,
-        `Preferred contact: ${preferredContact}`,
-        "",
-        "Project requirements:",
-        String(raw.get("message") || "").trim(),
-        "",
-        `Reference website: ${String(raw.get("reference") || "").trim() || "Not provided"}`,
-        `Additional notes: ${String(raw.get("notes") || "").trim() || "Not provided"}`
-      ].join("\n");
-
-      if (sendMethod === "whatsapp" || sendMethod === "both") {
-        const whatsappURL =
-          `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
-
-        if (whatsappTab && !whatsappTab.closed) {
-          whatsappTab.location.replace(whatsappURL);
-        } else {
-          setStatus(
-            "Enquiry submitted, but your browser blocked the WhatsApp tab. Allow pop-ups and use the WhatsApp link on this page.",
-            "error"
-          );
-        }
-      }
-
-      if (successPanel) {
-        successPanel.hidden = false;
-        successPanel.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest"
-        });
-      }
-
-      if (sendMethod === "email") {
-        setStatus(
-          "Enquiry submitted to Netlify. Email delivery depends on your configured Netlify notification settings.",
-          "success"
-        );
-      } else if (sendMethod === "both") {
-        setStatus(
-          "Enquiry submitted to Netlify. WhatsApp is opening with your message ready; press Send in WhatsApp. Email notification depends on your Netlify settings.",
-          "success"
-        );
-      } else {
-        setStatus(
-          "Enquiry submitted to Netlify. WhatsApp is opening with your message ready; press Send in WhatsApp.",
-          "success"
-        );
-      }
-
-      form.reset();
-
-      otherPairs.forEach(([selectId, inputId]) => {
-        const select = document.getElementById(selectId);
-        const input = document.getElementById(inputId);
-
-        if (select && input) {
-          input.hidden = select.value !== "Other";
-          input.required = select.value === "Other";
-        }
-      });
-
-      if (phoneIti) phoneIti.setCountry("in");
-
-    } catch (error) {
-      console.error("KN Studio form submission error:", error);
-
-      if (whatsappTab && !whatsappTab.closed) {
-        try { whatsappTab.close(); } catch (_) {}
-      }
-
-      setStatus(
-        error.message || "Could not submit the enquiry. Check your connection and try again.",
-        "error"
-      );
-
-    } finally {
-      form.dataset.submitting = "false";
-
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.querySelector("span:first-child").textContent =
-          "SUBMIT ENQUIRY";
-      }
+    if (opened) {
+      showStatus("WhatsApp has opened with your enquiry. Review the message and tap Send when you're ready.", "success");
+    } else {
+      showStatus("Your enquiry is ready. Use the link below to open WhatsApp.", "success");
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.className = "whatsapp-fallback";
+      link.textContent = "Open WhatsApp ↗";
+      status.append(document.createElement("br"), link);
     }
   });
-});
+
+  form.addEventListener("input", (event) => {
+    if (event.target.matches('[aria-invalid="true"]')) event.target.removeAttribute("aria-invalid");
+    if (status && status.classList.contains("error")) clearStatus();
+  });
+
+  form.addEventListener("change", (event) => {
+    if (event.target.matches('[aria-invalid="true"]')) event.target.removeAttribute("aria-invalid");
+    if (status && status.classList.contains("error")) clearStatus();
+  });
+})();

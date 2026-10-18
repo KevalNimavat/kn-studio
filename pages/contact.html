@@ -1,311 +1,172 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f1e8">
   <title>Contact | KN Studio</title>
-  <meta name="description" content="Contact KN Studio to discuss your website, design, and digital presence requirements.">
-
-  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Tell KN Studio about your next project. Thoughtful ideas, meaningful digital work.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/css/intlTelInput.css">
-  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/contact.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/intlTelInput.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.10.5/build/js/utils.js" defer></script>
   <script src="../js/main.js" defer></script>
   <script src="../js/contact.js" defer></script>
 </head>
-
-<body>
+<body class="contact-page">
   <header class="site-header">
-    <div class="container nav-container">
-      <a class="logo" href="../index.html">KN<span>.</span>STUDIO</a>
-
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="../index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html" class="nav-cta active">Let's Talk <span>↗</span></a>
-      </nav>
-    </div>
+    <a class="brand" href="../index.html" aria-label="KN Studio home">
+      <span class="brand-mark">KN</span><span class="brand-name">STUDIO</span>
+    </a>
+    <nav class="navigation" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../work.html">Work</a>
+      <a href="../services.html">Services</a>
+      <a class="active" href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <a class="talk-button" href="#contact-form">Let's Talk <span aria-hidden="true">↗</span></a>
   </header>
 
-  <main>
-    <section class="contact-hero">
-      <div class="container">
-        <p class="section-eyebrow">
-          <span class="eyebrow-line"></span> LET'S WORK TOGETHER
-        </p>
-
-        <h1>Have a project<br>in <span>mind?</span></h1>
-
-        <p class="contact-hero-description">
-          Tell me about your idea. Let's turn it into something thoughtful,
-          useful, and built to make an impact.
-        </p>
+  <main class="page-layout">
+    <section class="left-column" aria-label="Contact introduction and discoveries">
+      <div class="intro">
+        <p class="eyebrow"><span class="eyebrow-dot"></span>Your next project</p>
+        <h1>Let's make<br>it <span>happen.</span></h1>
+        <p class="intro-copy">Share a few details below so we can understand your needs and get back to you in your preferred way.</p>
       </div>
+
+      <section class="facts-section" id="random-facts" aria-labelledby="facts-heading">
+        <div class="facts-heading">
+          <div>
+            <p class="facts-eyebrow"><span aria-hidden="true">✳</span> The curious corner</p>
+            <h2 id="facts-heading">Feed your <span>curiosity.</span></h2>
+            <p class="facts-intro">Five little discoveries to make your day a little more interesting.</p>
+          </div>
+          <button class="facts-refresh" id="refresh-facts" type="button"><span aria-hidden="true">⟳</span> Refresh facts</button>
+        </div>
+
+        <article class="featured-fact" aria-live="polite">
+          <div class="featured-image-wrap">
+            <img id="featured-image" src="" alt="">
+            <span class="featured-image-label">Featured discovery</span>
+          </div>
+          <div class="featured-content">
+            <div class="fact-meta"><span id="featured-category">DISCOVER</span><span id="featured-number">01 / 05</span></div>
+            <h3 id="featured-title">Discover something extraordinary.</h3>
+            <p id="featured-description">A little discovery is on its way.</p>
+            <a class="featured-source" id="featured-source" href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Explore the photograph ↗</a>
+          </div>
+        </article>
+
+        <div class="fact-list" id="fact-list" aria-label="More discoveries"></div>
+        <p class="facts-footer"><span aria-hidden="true">✳</span> Stay curious. Keep discovering.</p>
+      </section>
     </section>
 
-    <section class="contact-section">
-      <div class="container contact-layout">
+    <aside class="form-card" aria-label="Project enquiry form">
+      <form id="contact-form" novalidate>
+        <div class="form-heading"><span>Project enquiry <b>✳</b></span><span>Fields marked <b>*</b> are required</span></div>
 
-        <aside class="contact-info">
-          <p class="section-eyebrow">GET IN TOUCH</p>
-
-          <h2>Let's make<br>something <span>great.</span></h2>
-
-          <p class="contact-info-description">
-            Share your goals, challenges, and what you want to build.
-            I'll review your requirements and get back to you.
-          </p>
-
-          <div class="contact-info-list">
-            <a href="mailto:kpworksss007@gmail.com" class="contact-info-item">
-              <span class="contact-info-label">EMAIL</span>
-              <span class="contact-info-value">kpworksss007@gmail.com</span>
-              <span class="contact-info-arrow">↗</span>
-            </a>
-
-            <a href="https://wa.me/919081815781"
-               class="contact-info-item"
-               target="_blank"
-               rel="noopener noreferrer">
-              <span class="contact-info-label">WHATSAPP</span>
-              <span class="contact-info-value">Chat directly with Keval</span>
-              <span class="contact-info-arrow">↗</span>
-            </a>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="name">Your name <b>*</b></label>
+            <input id="name" name="name" type="text" placeholder="Enter your name" autocomplete="name" required>
+          </div>
+          <div class="form-field">
+            <label for="email">Email address <b>*</b></label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+          <div class="form-field">
+            <label for="phone">WhatsApp / Phone <b>*</b></label>
+            <input id="phone" name="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel" required>
+          </div>
+          <div class="form-field">
+            <label for="business">Business / Brand</label>
+            <input id="business" name="business" type="text" placeholder="Your business name" autocomplete="organization">
           </div>
 
-          <div class="contact-availability">
-            <span class="availability-dot"></span>
-            <span>Available for selected projects</span>
+          <div class="form-field">
+            <label for="service">What do you need? <b>*</b></label>
+            <select id="service" name="service" required>
+              <option value="">Choose a service</option>
+              <option>Website design</option>
+              <option>Website development</option>
+              <option>Brand identity</option>
+              <option>Social media</option>
+              <option>SEO and digital presence</option>
+              <option>Content creation</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
-        </aside>
-
-        <div class="contact-form-wrapper">
-          <div class="contact-form-heading">
-            <p class="section-eyebrow">PROJECT ENQUIRY</p>
-            <h2>Tell me about your project.</h2>
-            <p>Complete the form and choose how you want to send your enquiry.</p>
+          <div class="form-field">
+            <label for="budget">Estimated budget</label>
+            <select id="budget" name="budget">
+              <option value="">Select a budget</option>
+              <option>Under ₹5,000</option>
+              <option>₹5,000 – ₹15,000</option>
+              <option>₹15,000 – ₹30,000</option>
+              <option>₹30,000 – ₹60,000</option>
+              <option>₹60,000+</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="deadline">Expected timeline</label>
+            <select id="deadline" name="deadline">
+              <option value="">Select a timeline</option>
+              <option>Within 1 week</option>
+              <option>Within 2–3 weeks</option>
+              <option>Within a month</option>
+              <option>Flexible</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
 
-          <form
-            id="contact-form"
-            name="contact-enquiry"
-            method="POST"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-            novalidate
-          >
-            <input type="hidden" name="form-name" value="contact-enquiry">
+          <div class="form-field full-width">
+            <label for="message">Tell us about your project <b>*</b></label>
+            <textarea id="message" name="message" placeholder="What are you looking to create?" rows="3" required></textarea>
+          </div>
+          <div class="form-field full-width">
+            <label for="reference">Reference website / link</label>
+            <input id="reference" name="reference" type="url" placeholder="https://example.com">
+          </div>
 
-            <p class="honeypot-field" aria-hidden="true">
-              <label>
-                Leave this field empty:
-                <input name="bot-field" tabindex="-1" autocomplete="off">
+          <fieldset class="contact-preference full-width">
+            <legend>How would you prefer to be contacted? <b>*</b></legend>
+            <div class="preference-options">
+              <label class="preference-option">
+                <input type="checkbox" name="preferred_contact" value="WhatsApp">
+                <span class="preference-check" aria-hidden="true">✓</span>
+                <span class="preference-icon" aria-hidden="true">◉</span>
+                <span><strong>WhatsApp</strong><small>Quick and convenient</small></span>
               </label>
-            </p>
-
-            <div class="form-grid">
-              <div class="form-field">
-                <label for="name">Your name <span>*</span></label>
-                <input id="name" name="name" type="text"
-                       placeholder="Full name" autocomplete="name"
-                       maxlength="100" required>
-              </div>
-
-              <div class="form-field">
-                <label for="email">Email address <span>*</span></label>
-                <input id="email" name="email" type="email"
-                       placeholder="you@example.com" autocomplete="email"
-                       maxlength="150" required>
-              </div>
-
-              <div class="form-field">
-                <label for="phone">Phone / WhatsApp number <span>*</span></label>
-                <input id="phone" name="phone" type="tel"
-                       placeholder="Enter mobile number"
-                       autocomplete="tel-national" inputmode="tel" required>
-              </div>
-
-              <div class="form-field">
-                <label for="business">Business / brand</label>
-                <input id="business" name="business" type="text"
-                       placeholder="Your business name" maxlength="150">
-              </div>
-
-              <div class="form-field form-field-full">
-                <label for="service">Service required <span>*</span></label>
-                <select id="service" name="service" required>
-                  <option value="" disabled selected>Select a service</option>
-                  <option>Website Design &amp; Development</option>
-                  <option>Landing Page</option>
-                  <option>Portfolio Website</option>
-                  <option>Google Business Profile</option>
-                  <option>Social Media Management</option>
-                  <option>SEO &amp; Digital Presence</option>
-                  <option>Content Creation</option>
-                  <option>Multiple Services</option>
-                  <option value="Other">Other</option>
-                </select>
-                <input class="other-input" id="service-other"
-                       name="service_other" type="text"
-                       placeholder="Tell me which service you need" hidden>
-              </div>
-
-              <div class="form-field">
-                <label for="budget">Estimated budget</label>
-                <select id="budget" name="budget">
-                  <option value="" selected>Select your budget</option>
-                  <option>Under ₹1,500</option>
-                  <option>₹1,500 – ₹5,000</option>
-                  <option>₹5,000 – ₹10,000</option>
-                  <option>₹10,000 – ₹25,000</option>
-                  <option>₹25,000+</option>
-                  <option>Open to discussion</option>
-                  <option value="Other">Other</option>
-                </select>
-                <input class="other-input" id="budget-other"
-                       name="budget_other" type="text"
-                       placeholder="Enter your budget" hidden>
-              </div>
-
-              <div class="form-field">
-                <label for="deadline">Expected timeline</label>
-                <select id="deadline" name="deadline">
-                  <option value="" selected>Select timeline</option>
-                  <option>Within 3 days</option>
-                  <option>Within 1 week</option>
-                  <option>Within 2 weeks</option>
-                  <option>Within 1 month</option>
-                  <option>Flexible</option>
-                  <option value="Other">Other</option>
-                </select>
-                <input class="other-input" id="deadline-other"
-                       name="deadline_other" type="text"
-                       placeholder="Describe your timeline" hidden>
-              </div>
-
-              <div class="form-field">
-                <label for="project-type">Project type</label>
-                <select id="project-type" name="project_type">
-                  <option value="" selected>Select project type</option>
-                  <option>New project</option>
-                  <option>Redesign existing website</option>
-                  <option>Fix or improve existing website</option>
-                  <option>Ongoing support</option>
-                  <option value="Other">Other</option>
-                </select>
-                <input class="other-input" id="project-type-other"
-                       name="project_type_other" type="text"
-                       placeholder="Describe your project type" hidden>
-              </div>
-
-              <div class="form-field">
-                <label for="preferred-contact">Preferred contact method</label>
-                <select id="preferred-contact" name="preferred_contact">
-                  <option value="" selected>Select contact method</option>
-                  <option>WhatsApp</option>
-                  <option>Email</option>
-                  <option>Phone call</option>
-                  <option>WhatsApp and Email</option>
-                  <option value="Other">Other</option>
-                </select>
-                <input class="other-input" id="preferred-contact-other"
-                       name="preferred_contact_other" type="text"
-                       placeholder="Enter preferred contact method" hidden>
-              </div>
-
-              <div class="form-field form-field-full">
-                <label for="message">Project requirements <span>*</span></label>
-                <textarea id="message" name="message" rows="5"
-                          placeholder="What would you like to build? Include your goals and requirements..."
-                          maxlength="5000" required></textarea>
-              </div>
-
-              <div class="form-field form-field-full">
-                <label for="reference">Reference website or inspiration</label>
-                <input id="reference" name="reference" type="url"
-                       placeholder="https://example.com" maxlength="500">
-              </div>
-
-              <div class="form-field form-field-full">
-                <label for="notes">Additional notes</label>
-                <textarea id="notes" name="notes" rows="3"
-                          placeholder="Anything else I should know?"
-                          maxlength="3000"></textarea>
-              </div>
+              <label class="preference-option">
+                <input type="checkbox" name="preferred_contact" value="Email">
+                <span class="preference-check" aria-hidden="true">✓</span>
+                <span class="preference-icon email-icon" aria-hidden="true">✉</span>
+                <span><strong>Email</strong><small>For detailed replies</small></span>
+              </label>
             </div>
+            <p class="field-help">You can select both options.</p>
+          </fieldset>
 
-            <fieldset class="send-method-fieldset">
-              <legend>How would you like to send your enquiry? <span>*</span></legend>
-
-              <div class="send-method-options">
-                <label class="send-method-card">
-                  <input type="radio" name="send_method" value="whatsapp" required>
-                  <span class="method-icon">◉</span>
-                  <span class="method-copy">
-                    <strong>WhatsApp</strong>
-                    <small>Open a chat with your details</small>
-                  </span>
-                </label>
-
-                <label class="send-method-card">
-                  <input type="radio" name="send_method" value="email" required>
-                  <span class="method-icon email-icon">✉</span>
-                  <span class="method-copy">
-                    <strong>Email</strong>
-                    <small>Submit your enquiry to my inbox</small>
-                  </span>
-                </label>
-
-                <label class="send-method-card">
-                  <input type="radio" name="send_method" value="both" required checked>
-                  <span class="method-icon both-icon">↗</span>
-                  <span class="method-copy">
-                    <strong>Both</strong>
-                    <small>Email submission + WhatsApp chat</small>
-                  </span>
-                </label>
-              </div>
-            </fieldset>
-
-            <p class="form-privacy">
-              Your details will only be used to respond to your enquiry.
-              WhatsApp messages must be sent by you in WhatsApp.
-            </p>
-
-            <button type="submit" class="contact-submit">
-              <span>SUBMIT ENQUIRY</span>
-              <span class="submit-arrow">↗</span>
-            </button>
-
-            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-          </form>
-
-          <div class="success-message-panel" id="success-panel" hidden>
-            <p class="section-eyebrow">ENQUIRY SUBMITTED</p>
-            <h3>Thank you for reaching out.</h3>
-            <p>Your enquiry was accepted by the form service. I'll review your requirements and get back to you.</p>
+          <div class="form-field full-width">
+            <label for="notes">Anything else? <span class="optional">(Optional)</span></label>
+            <textarea id="notes" name="notes" rows="2" placeholder="Extra details, preferences, or questions"></textarea>
           </div>
         </div>
-      </div>
-    </section>
+
+        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        <button class="submit-button" id="submit-button" type="submit">Continue to WhatsApp <span aria-hidden="true">↗</span></button>
+        <p class="privacy-note"><span aria-hidden="true">♙</span> Your message opens in WhatsApp for your review. Nothing is sent automatically.</p>
+      </form>
+    </aside>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <a class="logo footer-logo" href="../index.html">KN<span>.</span>STUDIO</a>
-      <p>Thoughtful digital experiences. Built with purpose.</p>
-      <p>© <span id="current-year"></span> KN Studio</p>
-    </div>
+    <a class="brand footer-brand" href="../index.html"><span class="brand-mark">KN</span><span class="brand-name">STUDIO</span></a>
+    <p>Thoughtful ideas. Meaningful work.</p>
+    <span>© <span id="year"></span> KN Studio</span>
   </footer>
 </body>
 </html>
